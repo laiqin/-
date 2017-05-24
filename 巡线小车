@@ -1,0 +1,114 @@
+#include <reg52.h> 
+#define uint unsigned int
+#define uchar unsigned char
+#define RIGHT 0X0C
+#define LEFT 0X03
+#define STRIGHT 0X09
+  sbit r1=P3^5;
+	sbit r2=P3^4;
+	sbit l1=P3^3;
+	sbit l2=P3^2;
+	
+	
+	
+	
+    uchar reception()
+    {
+    uchar temp;
+    while(P1!=0x0f)
+	      temp=P1;
+		return temp;
+    }
+
+		
+		
+		
+	void run_left(void)
+	{   
+	  r1=1;
+		r2=0;
+		l1=0;
+		l2=0;
+	}
+	
+	
+	
+	
+	void run_right(void)
+	{
+		r1=0;
+		r2=0;
+		l1=1;
+		l2=0;
+		
+	}
+	
+	
+	
+	
+	void stright()
+	{
+	  r1=1;
+		r2=0;
+		l1=1;
+		l2=0;
+	}
+	
+	
+	
+	
+	
+	void backl()
+	{	
+		r1=0;
+		r2=1;
+		l1=0;
+		l2=0;
+	}
+	
+	
+	
+	
+	
+	void backr()
+	{
+	
+	  r1=0;
+		r2=0;
+		l1=0;
+		l2=1;
+	}
+	
+	
+	
+	
+	void back()
+	{
+	  r1=0;
+		r2=1;
+		l1=0;
+		l2=1;
+	}
+	
+	
+	
+	
+	void main()
+	{
+		
+		stright();
+		
+		while(1)
+		{
+			if(reception==RIGHT)
+		     run_right();
+       
+			if(reception==LEFT)
+				run_left();
+			
+			if(reception==STRIGHT)
+				stright();
+			
+    }
+
+	}
